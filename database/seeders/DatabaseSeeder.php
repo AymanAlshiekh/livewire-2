@@ -14,11 +14,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $images = glob(public_path('images/*.*'));
+        foreach ($images as $image) {
+            unlink($image);
+        }
+        \App\Models\User::factory(10)->create();
+        \App\Models\User::factory()->create([
+            'name' => 'Ayman Alshiekh',
+            'email' => 'ayman@gmail.com',
+            'password'  =>  bcrypt('11111111')
+        ]);
+        \App\Models\Post::factory(50)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }

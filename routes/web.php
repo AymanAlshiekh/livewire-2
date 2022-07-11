@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\ShowPost;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +14,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+require __DIR__.'/auth.php';
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::get('/posts', function () {
+        return view('posts');
+    })->name('posts');
+
+    Route::get('/{slug}', ShowPost::class)->name('show_post');
+
+});
+
+
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-require __DIR__.'/auth.php';

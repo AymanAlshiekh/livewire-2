@@ -154,6 +154,7 @@
 </div>
 
 @push('scripts')
+    {{-- <script src="node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js"></script> --}}
     <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
     <script>
         window.onload = function () {

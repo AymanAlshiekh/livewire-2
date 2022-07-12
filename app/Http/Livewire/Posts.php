@@ -9,11 +9,12 @@ use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class Posts extends Component
 {
 
-    use WithPagination, WithFileUploads;
+    use WithPagination, WithFileUploads, LivewireAlert;
 
     public $title;
     public $slug_url;
@@ -75,7 +76,7 @@ class Posts extends Component
             'title' => ['required'],
             'slug_url' => ['required', Rule::unique('posts', 'slug')->ignore($this->modalId)],
             'body' => ['required'],
-            'post_image' => [Rule::requiredIf(!$this->modalId), 'max:1024']
+            'post_image' => [Rule::requiredIf(!$this->modalId), 'max:5000']
         ];
     }
 
